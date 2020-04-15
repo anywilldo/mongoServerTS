@@ -32,18 +32,24 @@ export class CampaignService {
 
     }
 
-    public addNewCampaign(req: Request, res: Response) {
+    public async addNewCampaign(req: Request, res: Response) {
         console.log('add campaign')
         const newCampaign = new Campaign(req.body);
         console.log(`req body ${JSON.stringify(req.body)}`)
-        res.end()
-        newCampaign.save((err: Error, test: MongooseDocument) => {
-            if (err) {
-                res.send(err)
-            } else {
-                res.json(test)
-            }
-        })
+        try {
+            const data = await newCampaign.save()
+            res.json(data)
+        } catch (err) {
+            console.log(err)
+            res.send(err)
+        }
+        // newCampaign.save((err: Error, test: MongooseDocument) => {
+        //     if (err) {
+        //         res.send(err)
+        //     } else {
+        //         res.json(test)
+        //     }
+        // })
     }
 
     public async updateCampaign(req: Request, res: Response) {
