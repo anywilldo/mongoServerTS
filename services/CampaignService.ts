@@ -39,7 +39,7 @@ export class CampaignService {
         res.end()
         newCampaign.save((err: Error, test: MongooseDocument) => {
             if (err) {
-                res.status(500).send(err)
+                res.send(err)
             } else {
                 res.json(test)
             }
@@ -49,7 +49,9 @@ export class CampaignService {
     public async updateCampaign(req: Request, res: Response) {
         //findbyid() to update
         console.log('update campaign')
-        const id = req.body.id
+        const id = req.body._id
+        console.log(id)
+        console.log(req.body)
         await Campaign.findByIdAndUpdate(id, req.body, (err: Error, campagin: any) => {
             if (err) {
                 res.send(err)
@@ -58,7 +60,6 @@ export class CampaignService {
                 res.send(message)
             }
         })
-
     }
 
     public async deleteCampaign(req: Request, res: Response) {

@@ -13,13 +13,13 @@ app.use(bodyParser.json({ limit: '50mb' }));
 
 const campaignService = new CampaignService();
 const campaignController = new CampaignController(campaignService);
-app.use('/api', campaignController.router());
+app.use('/api/campaign', campaignController.router());
 
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);
 })
 
-mongoose.connect('mongodb://127.0.0.1:27017/undone', { useNewUrlParser: true })
+mongoose.connect('mongodb://127.0.0.1:27017/undone', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('Connected to MongoDB...'))
     .catch(err => console.error('Could not connect to MongoDB...'));
 

@@ -1,5 +1,5 @@
 import express, { Application } from 'express';
-import { CampaignService } from '../services/service';
+import { CampaignService } from '../services/CampaignService';
 
 export class Controller {
     private campaignService: CampaignService;
