@@ -1,10 +1,11 @@
 import { CampaignController } from './router/CampaignController';
-import express, { Application } from 'express';
+import { CampaignService } from './services/CampaignService';
+import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
-import { CampaignService } from './services/service';
 
+const PORT = 8080
 const app = express();
 
 app.use(cors());
@@ -14,8 +15,8 @@ const campaignService = new CampaignService();
 const campaignController = new CampaignController(campaignService);
 app.use('/api', campaignController.router());
 
-app.listen(8080, () => {
-    console.log("Server listening on 8080");
+app.listen(PORT, () => {
+    console.log(`Server listening on ${PORT}`);
 })
 
 mongoose.connect('mongodb://127.0.0.1:27017/undone', { useNewUrlParser: true })

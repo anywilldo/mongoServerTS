@@ -4,7 +4,7 @@ import { MongooseDocument } from 'mongoose';
 
 export class CampaignService {
     public welcomeMessage(req: Request, res: Response) {
-        return res.status(200).send("hi router");
+        return res.status(200).send("hi from server");
     }
 
     public getAllCampaigns(req: Request, res: Response) {
@@ -46,13 +46,34 @@ export class CampaignService {
         })
     }
 
-    public updateCampaign(req: Request, res: Response) {
+    public async updateCampaign(req: Request, res: Response) {
+        //findbyid() to update
         console.log('update campaign')
+        const id = req.body.id
+        await Campaign.findByIdAndUpdate(id, req.body, (err: Error, campagin: any) => {
+            if (err) {
+                res.send(err)
+            } else {
+                const message = campagin ? "Campaign update" : "No Campaign Found"
+                res.send(message)
+            }
+        })
+
     }
 
-    public deleteCampaign(req: Request, res: Response) {
+    public async deleteCampaign(req: Request, res: Response) {
         console.log('delete campaign')
-        const name = req.params.id;
+        const id = req.params.id;
+        console.log(`delete campaign ${id}`)
+        await Campaign.findByIdAndDelete(id, (err: Error, deleted: any) => {
+            if (err) {
+                console.log(err)
+                res.send(err)
+            } else {
+                const message = deleted ? "Campaign deleted" : "No Campaign Found"
+                res.send(message)
+            }
+        })
 
     }
 

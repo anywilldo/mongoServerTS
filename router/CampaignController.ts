@@ -1,5 +1,5 @@
 import express, { Application } from 'express';
-import { CampaignService } from '../services/service';
+import { CampaignService } from '../services/CampaignService';
 
 
 export class CampaignController {
@@ -9,6 +9,7 @@ export class CampaignController {
     router() {
         const router = express.Router();
 
+        router.get('/hi', this.campaignService.welcomeMessage);
         router.get('/', this.campaignService.getAllCampaigns);
         router.post('/', this.campaignService.addNewCampaign);
         router.get('/:id', this.campaignService.getCampaign);
