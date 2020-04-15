@@ -47,14 +47,14 @@ export class CampaignService {
 
     public async updateCampaign(req: Request, res: Response) {
         console.log('update campaign')
-        const id = req.body._id
+        const id = req.params.id
         console.log(id)
         console.log(req.body)
         await Campaign.findByIdAndUpdate(id, req.body, (err: Error, campagin: any) => {
             if (err) {
                 res.send(err)
             } else {
-                const message = campagin ? "Campaign update" : "No Campaign Found"
+                const message = campagin ? "Campaign updated" : "No Campaign Found"
                 res.send(message)
             }
         })

@@ -12,7 +12,7 @@ export class CampaignController {
         router.get('/', this.campaignService.getAllCampaigns);
         router.post('/', this.campaignService.addNewCampaign);
         router.get('/:id', this.campaignService.getCampaign);
-        router.put('/', this.campaignService.updateCampaign);
+        router.put('/:id', this.campaignService.updateCampaign);
         router.delete('/:id', this.campaignService.deleteCampaign)
 
         return router
