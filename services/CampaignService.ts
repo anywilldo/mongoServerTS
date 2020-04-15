@@ -43,17 +43,9 @@ export class CampaignService {
             console.log(err)
             res.send(err)
         }
-        // newCampaign.save((err: Error, test: MongooseDocument) => {
-        //     if (err) {
-        //         res.send(err)
-        //     } else {
-        //         res.json(test)
-        //     }
-        // })
     }
 
     public async updateCampaign(req: Request, res: Response) {
-        //findbyid() to update
         console.log('update campaign')
         const id = req.body._id
         console.log(id)

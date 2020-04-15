@@ -19,7 +19,7 @@ app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);
 })
 
-mongoose.connect('mongodb://127.0.0.1:27017/undone', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb://127.0.0.1:27017/undone', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
     .then(() => console.log('Connected to MongoDB...'))
     .catch(err => console.error('Could not connect to MongoDB...'));
 
